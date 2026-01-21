@@ -1,0 +1,81 @@
+{
+    "meta": {
+        "theme_color": "luxury",
+        "font_family": "sans",
+        "layout": "agency"
+    },
+    "profile": {
+        "name": "陈创意",
+        "title": "广告策划 | 品牌公关 (AE)",
+        "phone": "136-1234-5678",
+        "email": "creative.chen@stu.edu.cn",
+        "wechat": "chen_ad",
+        "portfolio_url": "https://behance.net/chen_ad",
+        "location": "广州 / 深圳",
+        "avatar_url": "https://api.dicebear.com/7.x/avataaars/svg?seed=Annie"
+    },
+    "education": [
+        {
+            "school": "汕头大学",
+            "degree": "广告学 (长江新闻与传播学院)",
+            "time": "2021.09 - 2025.06",
+            "details": [
+                "GPA: 4.2/5.0 (专业前 10%)",
+                "主修课程：广告策划与创意、品牌管理、消费者行为学、平面设计基础",
+                "获得‘学院奖’全国银奖 (2023)"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "奥美 (Ogilvy) 广州",
+            "role": "客户执行实习生 (AE Intern)",
+            "time": "2024.06 - 2024.09",
+            "details": [
+                "参与某知名美妆品牌季度Campaign，协助撰写Brief和月度传播规划",
+                "对接KOL/KOC资源 50+，协调内容发布与监播，项目总曝光量超 500w",
+                "负责竞品分析报告撰写，输出了 3 份深度市场洞察周报"
+            ]
+        },
+        {
+            "company": "喜茶 (HEYTEA)",
+            "role": "品牌策划实习生",
+            "time": "2023.12 - 2024.03",
+            "details": [
+                "协助新品‘多肉葡萄’回归的线下快闪店活动执行，负责现场物料管理",
+                "撰写社群推广文案，设计 3 张活动倒计时海报，提升社群活跃度 15%",
+                "整理并分析用户反馈数据，为下一阶段周边产品设计提供建议"
+            ]
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "全国大学生广告艺术大赛作品《不被定义的她》",
+            "role": "策划/文案",
+            "link": "#",
+            "desc": "为某卫生巾品牌设计的全案策划，包含视频脚本、海报及H5互动，获省赛一等奖。"
+        },
+        {
+            "title": "《潮汕非遗·英歌舞》品牌重塑计划",
+            "role": "组长/视觉统筹",
+            "link": "#",
+            "desc": "基于年轻化视角，设计全套VI视觉识别系统及文创周边产品。"
+        },
+        {
+            "title": "校园公益广告：拒绝身材焦虑",
+            "role": "平面设计",
+            "link": "#",
+            "desc": "系列海报设计，在校园内展示并获得校媒报道。"
+        }
+    ],
+    "skills": {
+        "professional": ["品牌策划", "文案撰写", "市场调研", "活动执行", "媒介投放"],
+        "software": ["Adobe Photoshop", "Adobe Illustrator", "PowerPoint (精通)", "XMind"],
+        "languages": ["英语 CET-6 (580分)", "粤语 (流利)"]
+    },
+    "awards": [
+        "第15届全国大学生广告艺术大赛 广东赛区 一等奖",
+        "2023 戛纳幼狮中国赛区 入围奖",
+        "汕头大学一等奖学金"
+    ]
+}

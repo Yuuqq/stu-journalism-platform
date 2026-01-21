@@ -1,0 +1,90 @@
+{
+    "meta": {
+        "theme_color": "violet",
+        "font_family": "sans",
+        "layout": "visual"
+    },
+    "profile": {
+        "name": "王编导",
+        "title": "视频编导 | 后期剪辑 | 摄像",
+        "phone": "186-8888-9999",
+        "email": "wang.tv@stu.edu.cn",
+        "wechat": "wang_director",
+        "portfolio_url": "https://space.bilibili.com/wang_director",
+        "location": "长沙 / 广州",
+        "avatar_url": "https://api.dicebear.com/7.x/avataaars/svg?seed=Nolan"
+    },
+    "education": [
+        {
+            "school": "汕头大学",
+            "degree": "广播电视学 (长江新闻与传播学院)",
+            "time": "2021.09 - 2025.06",
+            "details": [
+                "GPA: 4.0/5.0",
+                "主修课程：电视摄像与编辑、纪录片创作、视听语言、广播电视节目制作",
+                "担任校电视台台长，统筹全校大型晚会直播"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "湖南卫视 (芒果TV)",
+            "role": "节目组导演助理",
+            "time": "2024.05 - 2024.09",
+            "details": [
+                "参与综艺《xxx》前期策划，撰写分镜脚本，设计游戏环节",
+                "负责现场执行导演工作，协调艺人档期与录制流程，解决突发状况",
+                "协助后期DIT管理素材，完成花絮片段的粗剪与字幕包装"
+            ]
+        },
+        {
+            "company": "二更视频",
+            "role": "短视频编导实习生",
+            "time": "2023.10 - 2024.02",
+            "details": [
+                "独立负责‘城市微光’系列短片，从选题、拍摄到后期全流程把控",
+                "熟练使用 Sony A7M3 进行拍摄，布光与收音效果专业",
+                "产出视频全网播放量累计 200w+，单条视频获微博热搜推荐"
+            ]
+        },
+        {
+            "company": "汕头大学新闻中心",
+            "role": "视频部部长",
+            "time": "2022.09 - 2023.06",
+            "details": [
+                "统筹学校毕业典礼、校运会等多机位直播导播工作",
+                "制作官方宣传片《We are STU》，获校级一等奖"
+            ]
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "人文纪录片《守塔人》",
+            "role": "导演/剪辑",
+            "link": "#",
+            "desc": "20分钟纪录片，记录南澳岛灯塔守护者的故事，入围大学生电影节。"
+        },
+        {
+            "title": "创意短片《错位时空》",
+            "role": "摄影/特效",
+            "link": "#",
+            "desc": "利用 AE 制作视觉特效，探索时空交错的叙事手法。"
+        },
+        {
+            "title": "Vlog：我的汕大一天",
+            "role": "全流程",
+            "link": "#",
+            "desc": "B站播放量 10w+，以第一视角展现真实的校园生活。"
+        }
+    ],
+    "skills": {
+        "professional": ["脚本撰写", "分镜绘制", "多机位拍摄", "灯光布置", "现场调度"],
+        "software": ["Adobe Premiere", "Final Cut Pro", "After Effects", "DaVinci Resolve", "Audition"],
+        "languages": ["英语 CET-6", "普通话一级甲等 (持有播音员主持人证)"]
+    },
+    "awards": [
+        "全国大学生微电影大赛 最佳剪辑奖",
+        "大广赛 视频类 广东赛区 一等奖",
+        "汕头大学文体活动积极分子"
+    ]
+}

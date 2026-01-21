@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} - 简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .font-sans { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        .font-serif { font-family: 'Georgia', 'Times New Roman', 'Songti SC', serif; }
+    </style>
+    <script>
+        const palettes = {
+            rose: { 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48', 900: '#881337' },
+            teal: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+            violet: { 50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95' },
+            academic: { 50: '#f9fafb', 100: '#f3f4f6', 200: '#e5e7eb', 500: '#000000', 600: '#1f2937', 900: '#111827' },
+            luxury: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 600: '#475569', 900: '#0f172a' },
+            indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 900: '#312e81' }
+        };
+        const themeKey = "{{ meta.theme_color }}".toLowerCase(); 
+        const selectedPalette = palettes[themeKey] || palettes['rose'];
+        tailwind.config = {
+            theme: { extend: { colors: { theme: selectedPalette } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-200 min-h-screen flex justify-center items-start p-0 md:p-8 {{ 'font-serif' if meta.font_family == 'serif' else 'font-sans' }}">
+
+    <!-- CLASSIC LAYOUT: Top Header, Single Column Content -->
+    <div class="w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex flex-col p-12 print:p-12 print:shadow-none print:w-full print:h-full relative">
+        
+        <!-- Header -->
+        <header class="border-b-4 border-theme-900 pb-6 mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 tracking-wider mb-2">{{ profile.name }}</h1>
+            <p class="text-lg text-theme-600 font-semibold mb-3">{{ profile.title }}</p>
+            <div class="flex justify-center flex-wrap gap-4 text-sm text-gray-600 font-medium">
+                <span><i class="fas fa-phone mr-1"></i>{{ profile.phone }}</span>
+                <span><i class="fas fa-envelope mr-1"></i>{{ profile.email }}</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>{{ profile.location }}</span>
+                {% if profile.portfolio_url %}
+                <span><i class="fas fa-globe mr-1"></i>{{ profile.portfolio_url }}</span>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- Education (Top Priority for Academic) -->
+        <section class="mb-6">
+            <h3 class="text-lg font-bold text-theme-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">
+                <i class="fas fa-graduation-cap mr-2"></i>教育背景
+            </h3>
+            {% for edu in education %}
+            <div class="flex justify-between items-baseline mb-1">
+                <div class="font-bold text-lg text-gray-800">{{ edu.school }}</div>
+                <div class="text-gray-600 italic">{{ edu.time }}</div>
+            </div>
+            <div class="mb-2">
+                <span class="font-bold text-theme-700">{{ edu.degree }}</span>
+                <span class="mx-2 text-gray-300">|</span>
+                <span class="text-gray-600 text-sm">{{ edu.details[0] }}</span>
+            </div>
+            <div class="text-sm text-gray-600">
+                <span class="font-semibold">主修课程：</span>{{ edu.details[1].replace('主修课程：', '') }}
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-6">
+            <h3 class="text-lg font-bold text-theme-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">
+                <i class="fas fa-newspaper mr-2"></i>实习与工作经历
+            </h3>
+            {% for exp in experience %}
+            <div class="mb-4">
+                <div class="flex justify-between items-baseline">
+                    <h4 class="font-bold text-gray-800 text-base">{{ exp.company }}</h4>
+                    <span class="text-sm text-gray-500">{{ exp.time }}</span>
+                </div>
+                <div class="text-theme-700 font-medium text-sm mb-1">{{ exp.role }}</div>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                    {% for detail in exp.details %}
+                    <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- Portfolio (Compact List) -->
+        <section class="mb-6">
+            <h3 class="text-lg font-bold text-theme-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">
+                <i class="fas fa-pen-nib mr-2"></i>代表作品
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {% for work in portfolio %}
+                <div class="border-l-2 border-theme-500 pl-3">
+                    <div class="font-bold text-gray-800 text-sm">{{ work.title }}</div>
+                    <div class="text-xs text-theme-600 mb-1">{{ work.role }}</div>
+                    <p class="text-xs text-gray-500">{{ work.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Skills & Awards (Bottom Columns) -->
+        <div class="flex gap-8">
+            <div class="flex-1">
+                <h3 class="text-lg font-bold text-theme-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">
+                    <i class="fas fa-tools mr-2"></i>技能
+                </h3>
+                <div class="text-sm text-gray-700">
+                    <div class="mb-1"><span class="font-bold">专业技能:</span> {{ skills.professional|join('、') }}</div>
+                    <div class="mb-1"><span class="font-bold">软件:</span> {{ skills.software|join('、') }}</div>
+                    <div><span class="font-bold">语言:</span> {{ skills.languages|join('、') }}</div>
+                </div>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-lg font-bold text-theme-900 border-b border-gray-300 pb-1 mb-3 uppercase tracking-wide">
+                    <i class="fas fa-award mr-2"></i>荣誉
+                </h3>
+                <ul class="list-none text-sm text-gray-700 space-y-1">
+                    {% for award in awards %}
+                    <li><i class="fas fa-caret-right text-theme-500 mr-2"></i>{{ award }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

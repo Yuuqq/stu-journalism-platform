@@ -1,0 +1,81 @@
+{
+    "meta": {
+        "theme_color": "teal",
+        "font_family": "sans",
+        "layout": "modern"
+    },
+    "profile": {
+        "name": "李运营",
+        "title": "新媒体运营 | 用户增长 | 产品运营",
+        "phone": "139-8765-4321",
+        "email": "li.ops@stu.edu.cn",
+        "wechat": "li_growth",
+        "portfolio_url": "https://li-ops.notion.site",
+        "location": "杭州 / 上海",
+        "avatar_url": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jack"
+    },
+    "education": [
+        {
+            "school": "汕头大学",
+            "degree": "网络与新媒体 (长江新闻与传播学院)",
+            "time": "2021.09 - 2025.06",
+            "details": [
+                "GPA: 4.1/5.0",
+                "主修课程：新媒体产品设计、数据挖掘与分析、网络舆情监测、Python程序设计",
+                "负责运营学院官方公众号，粉丝增长 5000+"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "字节跳动 (抖音)",
+            "role": "内容运营实习生",
+            "time": "2024.03 - 2024.08",
+            "details": [
+                "负责本地生活板块达人招募，累计引入优质探店博主 200+，月GMV贡献超百万",
+                "策划‘城市烟火气’话题活动，制定流量扶持规则，话题播放量达 3.5亿",
+                "通过SQL提取并分析后台数据，优化达人分层管理机制，活跃度提升 20%"
+            ]
+        },
+        {
+            "company": "小红书",
+            "role": "用户增长实习生",
+            "time": "2023.07 - 2023.11",
+            "details": [
+                "负责校园垂类用户拉新，搭建校园大使社群体系，覆盖 20 所高校",
+                "撰写并发布 SEO 优化笔记 50+ 篇，搜索流量占比提升至 40%",
+                "协助产品经理进行A/B测试，优化落地页UI，注册转化率提升 5%"
+            ]
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "个人公众号：‘互联网茶水间’",
+            "role": "主理人",
+            "link": "#",
+            "desc": "专注互联网职场干货分享，累计粉丝 2w+，单篇最高阅读 5w+。"
+        },
+        {
+            "title": "数据分析项目：B站热门视频规律探究",
+            "role": "数据分析",
+            "link": "#",
+            "desc": "使用 Python 爬取 10w 条视频数据，使用 Tableau 可视化分析爆款逻辑。"
+        },
+        {
+            "title": "H5 交互新闻：汕大美食地图",
+            "role": "产品/交互",
+            "link": "#",
+            "desc": "独立设计并制作的移动端交互网页，获得校内 1w+ 访问量。"
+        }
+    ],
+    "skills": {
+        "professional": ["账号运营", "社群管理", "SEO/ASO", "数据分析", "私域流量"],
+        "software": ["Python (Pandas/Requests)", "SQL", "Tableau", "Axure RP", "Figma"],
+        "languages": ["英语 CET-4", "HTML/CSS 基础"]
+    },
+    "awards": [
+        "第八届中国国际‘互联网+’大学生创新创业大赛 银奖",
+        "全国大学生计算机设计大赛 二等奖",
+        "汕头大学优秀学生干部"
+    ]
+}

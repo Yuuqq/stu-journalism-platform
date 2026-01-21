@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} - 简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .font-sans { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    </style>
+    <script>
+        const palettes = {
+            rose: { 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48', 900: '#881337' },
+            teal: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+            violet: { 50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95' },
+            academic: { 50: '#f9fafb', 100: '#f3f4f6', 200: '#e5e7eb', 500: '#000000', 600: '#1f2937', 900: '#111827' },
+            luxury: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 600: '#475569', 900: '#0f172a' },
+            indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 900: '#312e81' }
+        };
+        const themeKey = "{{ meta.theme_color }}".toLowerCase(); 
+        const selectedPalette = palettes[themeKey] || palettes['rose'];
+        tailwind.config = {
+            theme: { extend: { colors: { theme: selectedPalette } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-start p-0 md:p-8 font-sans">
+
+    <!-- AGENCY LAYOUT: Right Sidebar, Big Header -->
+    <div class="w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex flex-col print:shadow-none print:w-full print:h-full relative">
+        
+        <!-- Header -->
+        <div class="pt-12 pb-8 px-12">
+            <h1 class="text-6xl font-bold text-gray-900 tracking-tighter mb-2">{{ profile.name }}</h1>
+            <div class="flex items-center text-theme-500 font-bold text-xl uppercase tracking-widest">
+                <span class="w-12 h-1 bg-theme-500 mr-4"></span>
+                {{ profile.title }}
+            </div>
+        </div>
+
+        <div class="flex flex-1">
+            <!-- Main Content (Left, 65%) -->
+            <div class="w-[65%] pl-12 pr-8 pb-12">
+                
+                <!-- Experience -->
+                <div class="mb-10">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">Experience</h3>
+                    <div class="space-y-8 border-l border-gray-200 pl-6 ml-1">
+                        {% for exp in experience %}
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 bg-theme-500 rounded-full border-2 border-white"></div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-lg font-bold text-gray-800">{{ exp.company }}</h4>
+                                <span class="text-sm font-mono text-gray-400">{{ exp.time }}</span>
+                            </div>
+                            <div class="text-theme-600 font-bold text-sm mb-2">{{ exp.role }}</div>
+                            <ul class="text-sm text-gray-600 space-y-1.5 leading-relaxed">
+                                {% for detail in exp.details %}
+                                <li>{{ detail }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Portfolio -->
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">Selected Works</h3>
+                    <div class="grid gap-4">
+                        {% for work in portfolio %}
+                        <div class="bg-gray-50 p-4 border border-gray-100 hover:border-theme-300 transition-colors">
+                            <div class="font-bold text-gray-800">{{ work.title }}</div>
+                            <p class="text-xs text-gray-500 mt-1 mb-2">{{ work.desc }}</p>
+                            <span class="text-[10px] font-bold uppercase text-theme-500 tracking-wider">{{ work.role }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sidebar (Right, 35%) -->
+            <div class="w-[35%] bg-gray-50 px-8 pt-0 pb-12 border-l border-gray-200">
+                
+                <!-- Contact -->
+                <div class="mb-10 mt-2">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Contact</h3>
+                    <div class="text-sm text-gray-600 space-y-2 font-medium">
+                        <div class="truncate">{{ profile.email }}</div>
+                        <div>{{ profile.phone }}</div>
+                        <div>{{ profile.wechat }}</div>
+                        <div>{{ profile.location }}</div>
+                        {% if profile.portfolio_url %}
+                        <div class="text-theme-600 break-all">{{ profile.portfolio_url }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="mb-10">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Education</h3>
+                    {% for edu in education %}
+                    <div class="mb-4">
+                        <div class="font-bold text-gray-900">{{ edu.school }}</div>
+                        <div class="text-sm text-theme-600 font-bold">{{ edu.degree }}</div>
+                        <div class="text-xs text-gray-400 mt-1">{{ edu.time }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Skills -->
+                <div class="mb-10">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Skills</h3>
+                    <div class="flex flex-col gap-2">
+                        {% for skill in skills.professional %}
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-700 font-medium">{{ skill }}</span>
+                            <div class="w-16 h-1 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-theme-500 w-[85%]"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tool in skills.software %}
+                        <span class="text-xs bg-white border border-gray-200 px-2 py-1 text-gray-600">{{ tool }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

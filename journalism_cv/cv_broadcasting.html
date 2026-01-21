@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王编导 - 简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .font-sans { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    </style>
+    <script>
+        const palettes = {
+            rose: { 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48', 900: '#881337' },
+            teal: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+            violet: { 50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95' },
+            academic: { 50: '#f9fafb', 100: '#f3f4f6', 200: '#e5e7eb', 500: '#000000', 600: '#1f2937', 900: '#111827' },
+            luxury: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 600: '#475569', 900: '#0f172a' },
+            indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 900: '#312e81' }
+        };
+        const themeKey = "violet".toLowerCase(); 
+        const selectedPalette = palettes[themeKey] || palettes['rose'];
+        tailwind.config = {
+            theme: { extend: { colors: { theme: selectedPalette } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-800 min-h-screen flex justify-center items-start p-0 md:p-8 font-sans">
+
+    <!-- VISUAL LAYOUT: Dark Sidebar, High Contrast -->
+    <div class="w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex print:shadow-none print:w-full print:h-full relative">
+        
+        <!-- Left Sidebar (Dark) -->
+        <div class="w-[35%] bg-theme-900 text-white flex flex-col relative overflow-hidden">
+            <!-- Decorative Circle -->
+            <div class="absolute -right-12 -top-12 w-48 h-48 bg-theme-600 rounded-full opacity-50 blur-2xl"></div>
+
+            <div class="p-8 relative z-10 flex-1">
+                <!-- Avatar -->
+                <div class="w-32 h-32 mb-8 rounded-full overflow-hidden border-4 border-theme-500 shadow-xl">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Nolan" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Contact -->
+                <div class="mb-12 space-y-4 text-sm text-gray-300">
+                    <div class="flex items-center"><i class="fas fa-phone w-6 text-theme-500"></i> 186-8888-9999</div>
+                    <div class="flex items-center"><i class="fas fa-envelope w-6 text-theme-500"></i> wang.tv@stu.edu.cn</div>
+                    <div class="flex items-center"><i class="fas fa-map-marker-alt w-6 text-theme-500"></i> 长沙 / 广州</div>
+                    
+                    <div class="flex items-center"><i class="fas fa-globe w-6 text-theme-500"></i> <span class="truncate w-40">https://space.bilibili.com/wang_director</span></div>
+                    
+                </div>
+
+                <!-- Education -->
+                <div class="mb-12">
+                    <h3 class="text-white font-bold uppercase tracking-widest text-sm border-b border-theme-700 pb-2 mb-4">Education</h3>
+                    
+                    <div class="mb-4">
+                        <div class="font-bold text-white">汕头大学</div>
+                        <div class="text-theme-200 text-sm">广播电视学 (长江新闻与传播学院)</div>
+                        <div class="text-xs text-gray-500 mt-1">2021.09 - 2025.06</div>
+                    </div>
+                    
+                </div>
+
+                <!-- Skills -->
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-sm border-b border-theme-700 pb-2 mb-4">Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        
+                        <span class="bg-theme-800 text-xs px-2 py-1 rounded text-theme-100">脚本撰写</span>
+                        
+                        <span class="bg-theme-800 text-xs px-2 py-1 rounded text-theme-100">分镜绘制</span>
+                        
+                        <span class="bg-theme-800 text-xs px-2 py-1 rounded text-theme-100">多机位拍摄</span>
+                        
+                        <span class="bg-theme-800 text-xs px-2 py-1 rounded text-theme-100">灯光布置</span>
+                        
+                        <span class="bg-theme-800 text-xs px-2 py-1 rounded text-theme-100">现场调度</span>
+                        
+                        
+                        <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">Adobe Premiere</span>
+                        
+                        <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">Final Cut Pro</span>
+                        
+                        <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">After Effects</span>
+                        
+                        <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">DaVinci Resolve</span>
+                        
+                        <span class="bg-gray-800 text-xs px-2 py-1 rounded text-gray-300">Audition</span>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom decorative bar -->
+            <div class="h-4 bg-gradient-to-r from-theme-500 to-theme-600"></div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="flex-1 p-10 flex flex-col">
+            
+            <!-- Header -->
+            <div class="mb-10">
+                <h1 class="text-5xl font-bold text-gray-900 mb-2">王编导</h1>
+                <p class="text-xl text-theme-600 font-medium tracking-wide">视频编导 | 后期剪辑 | 摄像</p>
+            </div>
+
+            <!-- Portfolio (Highlighted) -->
+            <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-play-circle text-theme-500 mr-3"></i> 代表作品
+                </h3>
+                <div class="space-y-4">
+                    
+                    <div class="flex items-start group">
+                        <div class="flex-shrink-0 w-2 h-2 mt-2 bg-theme-300 rounded-full group-hover:bg-theme-600 transition-colors"></div>
+                        <div class="ml-4 flex-1 pb-4 border-b border-gray-100">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-gray-800 text-lg">人文纪录片《守塔人》</h4>
+                                <span class="text-xs font-bold text-white bg-theme-500 px-2 py-0.5 rounded">导演/剪辑</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">20分钟纪录片，记录南澳岛灯塔守护者的故事，入围大学生电影节。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start group">
+                        <div class="flex-shrink-0 w-2 h-2 mt-2 bg-theme-300 rounded-full group-hover:bg-theme-600 transition-colors"></div>
+                        <div class="ml-4 flex-1 pb-4 border-b border-gray-100">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-gray-800 text-lg">创意短片《错位时空》</h4>
+                                <span class="text-xs font-bold text-white bg-theme-500 px-2 py-0.5 rounded">摄影/特效</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">利用 AE 制作视觉特效，探索时空交错的叙事手法。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start group">
+                        <div class="flex-shrink-0 w-2 h-2 mt-2 bg-theme-300 rounded-full group-hover:bg-theme-600 transition-colors"></div>
+                        <div class="ml-4 flex-1 pb-4 border-b border-gray-100">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-gray-800 text-lg">Vlog：我的汕大一天</h4>
+                                <span class="text-xs font-bold text-white bg-theme-500 px-2 py-0.5 rounded">全流程</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">B站播放量 10w+，以第一视角展现真实的校园生活。</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-briefcase text-theme-500 mr-3"></i> 工作经历
+                </h3>
+                <div class="space-y-8">
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-gray-800 text-lg">湖南卫视 (芒果TV)</h4>
+                            <span class="text-sm text-gray-500 font-mono">2024.05 - 2024.09</span>
+                        </div>
+                        <div class="text-theme-700 font-medium mb-2">节目组导演助理</div>
+                        <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                            
+                            <li>参与综艺《xxx》前期策划，撰写分镜脚本，设计游戏环节</li>
+                            
+                            <li>负责现场执行导演工作，协调艺人档期与录制流程，解决突发状况</li>
+                            
+                            <li>协助后期DIT管理素材，完成花絮片段的粗剪与字幕包装</li>
+                            
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-gray-800 text-lg">二更视频</h4>
+                            <span class="text-sm text-gray-500 font-mono">2023.10 - 2024.02</span>
+                        </div>
+                        <div class="text-theme-700 font-medium mb-2">短视频编导实习生</div>
+                        <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                            
+                            <li>独立负责‘城市微光’系列短片，从选题、拍摄到后期全流程把控</li>
+                            
+                            <li>熟练使用 Sony A7M3 进行拍摄，布光与收音效果专业</li>
+                            
+                            <li>产出视频全网播放量累计 200w+，单条视频获微博热搜推荐</li>
+                            
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-gray-800 text-lg">汕头大学新闻中心</h4>
+                            <span class="text-sm text-gray-500 font-mono">2022.09 - 2023.06</span>
+                        </div>
+                        <div class="text-theme-700 font-medium mb-2">视频部部长</div>
+                        <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                            
+                            <li>统筹学校毕业典礼、校运会等多机位直播导播工作</li>
+                            
+                            <li>制作官方宣传片《We are STU》，获校级一等奖</li>
+                            
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

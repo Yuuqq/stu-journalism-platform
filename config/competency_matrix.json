@@ -1,0 +1,52 @@
+{
+    "journalism": {
+        "dimensions": {
+            "news_gathering": {
+                "label": "采访突破力",
+                "keywords": ["采访", "调研", "暗访", "突破", "独家", "深度", "访谈", "interview"],
+                "weight": 0.3
+            },
+            "writing": {
+                "label": "叙事写作力",
+                "keywords": ["特稿", "撰写", "稿件", "非虚构", "评论", "writing", "storytelling", "narrative"],
+                "weight": 0.3
+            },
+            "multimedia": {
+                "label": "融合生产力",
+                "keywords": ["视频", "剪辑", "摄影", "Pr", "Ps", "Ae", "camera", "editing", "visual"],
+                "weight": 0.2
+            },
+            "data_literacy": {
+                "label": "数据素养",
+                "keywords": ["Python", "Excel", "数据", "可视化", "分析", "爬虫", "data", "chart"],
+                "weight": 0.2
+            }
+        },
+        "baseline_score": 60
+    },
+    "advertising": {
+        "dimensions": {
+            "strategy": {
+                "label": "策略策划力",
+                "keywords": ["策划", "方案", "洞察", "策略", "brief", "planning"],
+                "weight": 0.3
+            },
+            "creativity": {
+                "label": "创意表现力",
+                "keywords": ["文案", "设计", "创意", "海报", "脚本", "copywriting", "design"],
+                "weight": 0.3
+            },
+            "execution": {
+                "label": "项目执行力",
+                "keywords": ["执行", "落地", "统筹", "现场", "execution"],
+                "weight": 0.2
+            },
+             "digital_marketing": {
+                "label": "数字营销力",
+                "keywords": ["投流", "运营", "SEO", "SEM", "流量", "转化", "marketing"],
+                "weight": 0.2
+            }
+        },
+        "baseline_score": 60
+    }
+}

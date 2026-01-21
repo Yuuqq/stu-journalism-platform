@@ -1,0 +1,46 @@
+{
+    "meta": {
+        "layout": "modern",
+        "theme_color": "teal",
+        "font_family": "sans"
+    },
+    "profile": {
+        "name": "Zhang X霸",
+        "title": "新闻传播学院学生",
+        "email": "zhang@stu.edu.cn",
+        "phone": "138-xxxx-xxxx",
+        "location": "Guangdong, China"
+    },
+    "education": [
+        {
+            "school": "Shantou University",
+            "degree": "B.A. Journalism & Communication",
+            "time": "2023 - Present",
+            "details": [
+                "GPA: 3.80/4.0",
+                "Core Courses: 新闻学概论, 摄影基础, 媒体技术基础, 新闻采访写作..."
+            ]
+        }
+    ],
+    "experience": [],
+    "projects": [
+        {
+            "name": "校园新闻摄影展",
+            "role": "摄影师",
+            "time": "Year 1",
+            "desc": "完成《校园一角》组图拍摄，掌握光圈与快门运用。"
+        }
+    ],
+    "skills": {
+        "professional": [
+            "Interviewing",
+            "News Writing",
+            "Photography (DSLR/Mirrorless)"
+        ],
+        "software": [],
+        "languages": [
+            "Mandarin (Native)",
+            "English (CET-4)"
+        ]
+    }
+}

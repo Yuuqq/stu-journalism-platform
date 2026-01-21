@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} - 简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        /* Font Classes */
+        .font-sans { font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif; }
+        .font-serif { font-family: 'Georgia', 'Times New Roman', 'Songti SC', 'SimSun', serif; }
+        
+        /* Specific tweaks for Academic Style */
+        .theme-academic .section-title { border-bottom-style: solid; }
+    </style>
+    <script>
+        // Color Palettes Definition
+        const palettes = {
+            // Default Rose
+            rose: { 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48', 900: '#881337' },
+            // Tech Teal
+            teal: { 50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 500: '#14b8a6', 600: '#0d9488', 900: '#134e4a' },
+            // Creative Violet
+            violet: { 50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95' },
+            // Academic Black & White
+            academic: { 50: '#f9fafb', 100: '#f3f4f6', 200: '#e5e7eb', 500: '#000000', 600: '#1f2937', 900: '#111827' },
+            // Luxury/Industry Slate
+            luxury: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 600: '#475569', 900: '#0f172a' },
+            // Deep Blue
+            indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 900: '#312e81' },
+            // Forest Green
+            green: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 500: '#22c55e', 600: '#16a34a', 900: '#14532d' }
+        };
+
+        // Get theme from Config (Injected by Jinja)
+        const themeKey = "{{ meta.theme_color }}".toLowerCase(); 
+        const selectedPalette = palettes[themeKey] || palettes['rose'];
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: selectedPalette,
+                        gray: {
+                            50: '#f9fafb',
+                            100: '#f3f4f6',
+                            200: '#e5e7eb',
+                            300: '#d1d5db',
+                            400: '#9ca3af',
+                            500: '#6b7280',
+                            600: '#4b5563',
+                            700: '#374151',
+                            800: '#1f2937',
+                            900: '#111827',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-start p-0 md:p-8 {{ 'font-serif' if meta.font_family == 'serif' else 'font-sans' }} theme-{{ meta.theme_color }}">
+
+    <!-- A4 Paper Container -->
+    <div class="w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row print:shadow-none print:w-full print:h-full">
+        
+        <!-- Left Sidebar (30%) -->
+        <!-- Logic: If Academic, maybe white background with borders? For now, keep layout but change colors via palette -->
+        <div class="w-full md:w-[32%] bg-theme-50 border-r border-theme-200 p-8 flex flex-col">
+            
+            <!-- Avatar -->
+            <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <img src="{{ profile.avatar_url }}" alt="Avatar" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Contact Info -->
+            <div class="mb-8 space-y-3 text-sm text-theme-900">
+                <div class="flex items-center">
+                    <i class="fas fa-phone w-6 text-center text-theme-500"></i>
+                    <span>{{ profile.phone }}</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-envelope w-6 text-center text-theme-500"></i>
+                    <span class="truncate">{{ profile.email }}</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fab fa-weixin w-6 text-center text-theme-500"></i>
+                    <span>{{ profile.wechat }}</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt w-6 text-center text-theme-500"></i>
+                    <span>{{ profile.location }}</span>
+                </div>
+                {% if profile.portfolio_url %}
+                <div class="flex items-center">
+                    <i class="fas fa-globe w-6 text-center text-theme-500"></i>
+                    <a href="{{ profile.portfolio_url }}" class="hover:underline truncate">{{ profile.portfolio_url }}</a>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Education -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold text-theme-900 border-b-2 border-theme-500 pb-1 mb-3 section-title">教育背景</h3>
+                {% for edu in education %}
+                <div class="mb-4">
+                    <div class="font-bold text-gray-800">{{ edu.school }}</div>
+                    <div class="text-sm text-theme-600 font-bold">{{ edu.degree }}</div>
+                    <div class="text-xs text-gray-500 mb-1">{{ edu.time }}</div>
+                    <ul class="text-xs text-gray-600 list-disc list-inside space-y-0.5">
+                        {% for detail in edu.details %}
+                        <li>{{ detail }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold text-theme-900 border-b-2 border-theme-500 pb-1 mb-3 section-title">技能专长</h3>
+                
+                <div class="mb-3">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">专业技能</h4>
+                    <div class="flex flex-wrap gap-2">
+                        {% for skill in skills.professional %}
+                        <!-- Pill Style: Changes based on theme -->
+                        <span class="px-2 py-1 bg-white text-theme-900 text-xs rounded border border-theme-200 shadow-sm">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">软件工具</h4>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tool in skills.software %}
+                        <span class="px-2 py-1 bg-gray-200 text-gray-700 text-xs rounded">{{ tool }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-700 mb-2">语言能力</h4>
+                    <ul class="text-xs text-gray-600 space-y-1">
+                        {% for lang in skills.languages %}
+                        <li><i class="fas fa-check text-theme-500 mr-1"></i>{{ lang }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Awards (Moved to Left for better balance in Academic style, but optional) -->
+            {% if awards %}
+            <div>
+                <h3 class="text-lg font-bold text-theme-900 border-b-2 border-theme-500 pb-1 mb-3 section-title">荣誉奖项</h3>
+                <ul class="text-xs text-gray-600 space-y-2">
+                    {% for award in awards %}
+                    <li class="flex items-start">
+                        <i class="fas fa-trophy text-theme-500 mt-0.5 mr-2 text-xs"></i>
+                        <span>{{ award }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Right Content (70%) -->
+        <div class="w-full md:w-[68%] p-8 bg-white flex flex-col">
+            
+            <!-- Header -->
+            <div class="mb-8 pb-4 border-b border-gray-100">
+                <h1 class="text-4xl font-bold text-gray-900 tracking-wide mb-2">{{ profile.name }}</h1>
+                <h2 class="text-xl text-theme-600 font-medium">{{ profile.title }}</h2>
+            </div>
+
+            <!-- Experience -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center mb-4 section-title">
+                    <span class="w-2 h-6 bg-theme-500 mr-2 rounded-sm"></span>
+                    实习/工作经历
+                </h3>
+                
+                <div class="space-y-6">
+                    {% for exp in experience %}
+                    <div class="relative pl-4 border-l-2 border-gray-100 hover:border-theme-300 transition-colors">
+                        <div class="flex justify-between items-baseline mb-1">
+                            <h4 class="text-lg font-bold text-gray-800">{{ exp.company }}</h4>
+                            <span class="text-sm text-gray-500 font-mono">{{ exp.time }}</span>
+                        </div>
+                        <div class="text-theme-600 font-bold text-sm mb-2">{{ exp.role }}</div>
+                        <ul class="space-y-1.5">
+                            {% for detail in exp.details %}
+                            <li class="text-sm text-gray-700 leading-relaxed flex items-start">
+                                <span class="mr-2 mt-1.5 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"></span>
+                                <span>{{ detail }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Portfolio -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center mb-4 section-title">
+                    <span class="w-2 h-6 bg-theme-500 mr-2 rounded-sm"></span>
+                    代表作品
+                </h3>
+                
+                <div class="grid grid-cols-1 gap-4">
+                    {% for work in portfolio %}
+                    <a href="{{ work.link }}" target="_blank" class="block p-4 rounded-lg bg-gray-50 border border-gray-100 hover:bg-theme-50 hover:border-theme-200 transition-all group">
+                        <div class="flex justify-between items-start mb-1">
+                            <div class="font-bold text-gray-800 group-hover:text-theme-700">{{ work.title }}</div>
+                            <span class="text-xs px-2 py-0.5 bg-white border border-gray-200 rounded text-gray-500">{{ work.role }}</span>
+                        </div>
+                        <p class="text-sm text-gray-600">{{ work.desc }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

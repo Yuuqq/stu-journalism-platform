@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "layout": "modern",
+        "theme_color": "teal",
+        "font_family": "sans"
+    },
+    "profile": {
+        "name": "Zhang X霸",
+        "title": "数据新闻记者 | 融合媒体主编",
+        "email": "zhang@stu.edu.cn",
+        "phone": "138-xxxx-xxxx",
+        "location": "Guangdong, China"
+    },
+    "education": [
+        {
+            "school": "Shantou University",
+            "degree": "B.A. Journalism & Communication",
+            "time": "2023 - Present",
+            "details": [
+                "GPA: 3.90/4.0",
+                "Core Courses: 新闻学概论, 摄影基础, 媒体技术基础, 新闻采访写作..."
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "某知名互联网大厂",
+            "role": "实习记者/编导",
+            "time": "Year 4",
+            "details": [
+                "参与核心项目执行",
+                "撰写/制作发布内容 20+ 篇"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "校园新闻摄影展",
+            "role": "摄影师",
+            "time": "Year 1",
+            "desc": "完成《校园一角》组图拍摄，掌握光圈与快门运用。"
+        },
+        {
+            "name": "社交媒体舆情分析报告",
+            "role": "数据分析师",
+            "time": "Year 3",
+            "desc": "使用 Python 抓取微博数据，分析热点事件传播路径。"
+        }
+    ],
+    "skills": {
+        "professional": [
+            "Photography (DSLR/Mirrorless)",
+            "Statistics",
+            "Data Analysis (Excel/SPSS)",
+            "Interviewing",
+            "Python Programming",
+            "News Writing"
+        ],
+        "software": [
+            "Python (Pandas)"
+        ],
+        "languages": [
+            "Mandarin (Native)",
+            "English (CET-4)",
+            "English (CET-6)"
+        ]
+    }
+}

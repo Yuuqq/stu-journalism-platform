@@ -1,0 +1,79 @@
+{
+    "meta": {
+        "theme_color": "rose",
+        "font_family": "sans-serif"
+    },
+    "profile": {
+        "name": "林语堂",
+        "title": "新媒体运营 | 深度报道记者",
+        "phone": "138-0000-0000",
+        "email": "lin.yutang@stu.edu.cn",
+        "wechat": "lin_reporter",
+        "portfolio_url": "https://lin-media-works.com",
+        "location": "上海",
+        "avatar_url": "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+    },
+    "education": [
+        {
+            "school": "汕头大学",
+            "degree": "新闻传播学 学士",
+            "time": "2020.09 - 2024.06",
+            "details": [
+                "GPA: 4.5/5.0 (专业前 5%)",
+                "主修课程：新闻采访与写作、传播学概论、融合新闻报道、数字媒体技术"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "company": "澎湃新闻",
+            "role": "深度报道实习生",
+            "time": "2023.07 - 2023.10",
+            "details": [
+                "参与‘城市更新’专题策划，独立采写 3 篇深度稿件，单篇最高阅读量 10w+",
+                "协助制作‘防汛救灾’系列短视频，负责脚本撰写与后期剪辑，全网播放量破百万",
+                "利用 Python 进行数据抓取与分析，制作‘外卖骑手生存状况’数据新闻图表"
+            ]
+        },
+        {
+            "company": "字节跳动",
+            "role": "内容运营实习生",
+            "time": "2022.12 - 2023.03",
+            "details": [
+                "负责抖音端‘校园生活’话题运营，策划挑战赛活动，话题参与人数超 5000 人",
+                "分析后台用户数据，优化内容分发策略，使账号粉丝在 3 个月内增长 20%",
+                "撰写并在多平台分发推广软文，转化率较平均水平提升 15%"
+            ]
+        }
+    ],
+    "portfolio": [
+        {
+            "title": "《消失的报刊亭》深度报道",
+            "role": "独立采写",
+            "link": "#",
+            "desc": "通过走访 20 位报刊亭主，记录城市变迁中的个体命运。"
+        },
+        {
+            "title": "数据新闻：谁在购买盲盒？",
+            "role": "数据分析/可视化",
+            "link": "#",
+            "desc": "基于 10w+ 电商数据，使用 Tableau 制作交互式图表。"
+        },
+        {
+            "title": "某品牌‘双十一’宣传片",
+            "role": "导演/剪辑",
+            "link": "#",
+            "desc": "负责从创意脚本到后期成片的全流程，ROI 达到 1:5。"
+        }
+    ],
+    "skills": {
+        "professional": ["新闻采写", "非线性编辑", "数据新闻", "新媒体排版", "摄影/摄像"],
+        "software": ["Adobe Premiere", "Photoshop", "After Effects", "Python (Pandas)", "秀米/135编辑器"],
+        "languages": ["英语 CET-6 (605分)", "普通话一级乙等"]
+    },
+    "awards": [
+        "中国日报‘校园学报’最佳新闻奖 (2023)",
+        "汕头大学一等奖学金",
+        "全国大学生广告艺术大赛 视频类 二等奖"
+    ]
+}

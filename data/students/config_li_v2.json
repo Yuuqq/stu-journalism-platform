@@ -1,0 +1,57 @@
+{
+    "meta": {
+        "layout": "modern",
+        "theme_color": "teal",
+        "font_family": "sans"
+    },
+    "profile": {
+        "name": "Li 导演",
+        "title": "视频编导 | 新媒体运营",
+        "email": "li@stu.edu.cn",
+        "phone": "138-xxxx-xxxx",
+        "location": "Guangdong, China"
+    },
+    "education": [
+        {
+            "school": "Shantou University",
+            "degree": "B.A. Journalism & Communication",
+            "time": "2023 - Present",
+            "details": [
+                "GPA: 3.20/4.0",
+                "Core Courses: 新闻学概论, 摄影基础, 媒体技术基础, 新闻采访写作..."
+            ]
+        }
+    ],
+    "experience": [],
+    "projects": [
+        {
+            "name": "校园新闻摄影展",
+            "role": "摄影师",
+            "time": "Year 1",
+            "desc": "完成《校园一角》组图拍摄，掌握光圈与快门运用。"
+        },
+        {
+            "name": "微纪录片《潮汕非遗》",
+            "role": "导演/剪辑",
+            "time": "Year 3",
+            "desc": "统筹 5 人团队，完成 10 分钟纪录片，获学院奖银奖。"
+        }
+    ],
+    "skills": {
+        "professional": [
+            "Photography (DSLR/Mirrorless)",
+            "Statistics",
+            "Interviewing",
+            "Python Programming",
+            "News Writing"
+        ],
+        "software": [
+            "Adobe Premiere",
+            "After Effects"
+        ],
+        "languages": [
+            "Mandarin (Native)",
+            "English (CET-4)"
+        ]
+    }
+}

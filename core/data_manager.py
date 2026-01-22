@@ -141,8 +141,14 @@ class DataManager:
         if not scores:
             return {"highlight": "", "suggestion": ""}
 
-        best_dim = max(scores, key=scores.get)
-        worst_dim = min(scores, key=scores.get)
+        # 过滤掉非数值字段（如 'Stage'）
+        numeric_scores = {k: v for k, v in scores.items() if isinstance(v, (int, float))}
+
+        if not numeric_scores:
+            return {"highlight": "", "suggestion": ""}
+
+        best_dim = max(numeric_scores, key=numeric_scores.get)
+        worst_dim = min(numeric_scores, key=numeric_scores.get)
 
         return {
             "highlight": f"你在 **{best_dim}** 维度表现卓越，这与你简历中多次提到的项目经历高度契合。",

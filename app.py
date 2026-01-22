@@ -12,7 +12,7 @@ if str(ROOT_DIR) not in sys.path:
 
 import streamlit as st
 from core.config import get_config
-from pages import render_resume_builder, render_digital_twin, render_ai_copilot
+from views import render_resume_builder, render_digital_twin, render_ai_copilot
 
 
 def init_app():

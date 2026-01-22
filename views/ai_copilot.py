@@ -1,9 +1,23 @@
 """
 AI 教学助教页面
+
+提供基于 RAG 的智能问答功能。
 """
+from __future__ import annotations
+
 import streamlit as st
 
-from core.rag_engine import get_rag_engine
+from core.rag_engine import get_rag_engine, RAGEngine
+
+
+@st.cache_resource(show_spinner="正在加载知识库...")
+def _get_cached_rag_engine() -> RAGEngine:
+    """获取缓存的 RAG 引擎实例
+
+    使用 Streamlit 的 cache_resource 装饰器确保
+    RAG 引擎只初始化一次，避免重复加载语料库。
+    """
+    return get_rag_engine()
 
 
 def render_ai_copilot():
@@ -53,7 +67,7 @@ def _render_rag_status():
     """渲染 RAG 引擎状态"""
     with st.expander("🔧 知识库状态"):
         try:
-            engine = get_rag_engine()
+            engine = _get_cached_rag_engine()
             stats = engine.get_stats()
 
             if stats['indexed']:
@@ -112,9 +126,16 @@ def _handle_user_input(prompt: str):
 
 
 def _query_knowledge_base(query: str) -> str:
-    """查询知识库"""
+    """查询知识库
+
+    Args:
+        query: 用户查询
+
+    Returns:
+        AI 生成的回复
+    """
     try:
-        engine = get_rag_engine()
+        engine = _get_cached_rag_engine()
         return engine.generate_response(query)
     except Exception as e:
         return f"⚠️ RAG 引擎运行出错: {str(e)}"

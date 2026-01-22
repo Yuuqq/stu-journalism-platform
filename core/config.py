@@ -1,12 +1,21 @@
 """
 统一配置管理模块
 集中管理所有路径、常量和系统设置
+
+该模块提供：
+- PathConfig: 路径配置，管理项目中所有文件路径
+- UIConfig: UI 配置，管理界面相关设置
+- RAGConfig: RAG 引擎配置
+- Config: 全局配置管理器（单例模式）
 """
-import os
 import json
+import logging
 from pathlib import Path
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
+
+# 配置日志
+logger = logging.getLogger(__name__)
 
 # 获取项目根目录
 ROOT_DIR = Path(__file__).parent.parent
@@ -83,11 +92,20 @@ class UIConfig:
 
 @dataclass
 class RAGConfig:
-    """RAG 引擎配置"""
+    """RAG 引擎配置
+
+    Attributes:
+        chunk_size: 文本分块大小（字符数）
+        chunk_overlap: 分块重叠大小
+        min_chunk_length: 最小分块长度
+        ngram_range: N-gram 范围，用于中文字符级匹配
+        similarity_threshold: 相似度阈值
+        top_k: 返回的最相关结果数量
+    """
     chunk_size: int = 200
     chunk_overlap: int = 40
     min_chunk_length: int = 10
-    ngram_range: tuple = (2, 4)
+    ngram_range: Tuple[int, int] = (2, 4)
     similarity_threshold: float = 0.02
     top_k: int = 2
 
@@ -126,15 +144,22 @@ class Config:
         return self._competency_matrix
 
     def _load_json(self, path: Path) -> Dict:
-        """安全加载 JSON 文件"""
+        """安全加载 JSON 文件
+
+        Args:
+            path: JSON 文件路径
+
+        Returns:
+            解析后的字典，如果加载失败返回空字典
+        """
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
-            print(f"Warning: Config file not found: {path}")
+            logger.warning(f"Config file not found: {path}")
             return {}
         except json.JSONDecodeError as e:
-            print(f"Warning: Invalid JSON in {path}: {e}")
+            logger.warning(f"Invalid JSON in {path}: {e}")
             return {}
 
     def get_cv_config_path(self, name: str) -> Path:

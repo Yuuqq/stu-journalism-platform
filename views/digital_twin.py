@@ -1,13 +1,17 @@
 """
 学生成长数字孪生页面
 """
+from __future__ import annotations
+
+from typing import List, Dict, Any
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
 from core.config import get_config
-from core.data_manager import get_data_manager
+from core.data_manager import get_data_manager, DataManager
 
 
 def render_digital_twin():
@@ -66,7 +70,7 @@ def render_digital_twin():
     _render_feedback(data_mgr, latest_scores)
 
 
-def _analyze_current_cv(data_mgr) -> list:
+def _analyze_current_cv(data_mgr: DataManager) -> List[Dict[str, Any]]:
     """分析当前编辑中的简历"""
     if 'cv_data' not in st.session_state:
         st.session_state.cv_data = data_mgr.get_default_cv_config()
@@ -78,7 +82,7 @@ def _analyze_current_cv(data_mgr) -> list:
     return [scores]
 
 
-def _analyze_student_history(data_mgr, student_id: str) -> list:
+def _analyze_student_history(data_mgr: DataManager, student_id: str) -> List[Dict[str, Any]]:
     """分析学生历史档案"""
     history = data_mgr.load_student_history(student_id)
     scores_list = []
@@ -92,7 +96,7 @@ def _analyze_student_history(data_mgr, student_id: str) -> list:
     return scores_list
 
 
-def _render_radar_chart(scores: dict, title: str):
+def _render_radar_chart(scores: Dict[str, Any], title: str) -> None:
     """渲染能力雷达图"""
     st.subheader("1. 核心胜任力雷达 (Latest)")
 
@@ -119,7 +123,7 @@ def _render_radar_chart(scores: dict, title: str):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def _render_growth_chart(df_history: pd.DataFrame):
+def _render_growth_chart(df_history: pd.DataFrame) -> None:
     """渲染成长轨迹图"""
     st.subheader("2. 成长轨迹演进 (History)")
 
@@ -141,7 +145,7 @@ def _render_growth_chart(df_history: pd.DataFrame):
     st.plotly_chart(fig, use_container_width=True)
 
 
-def _render_feedback(data_mgr, scores: dict):
+def _render_feedback(data_mgr: DataManager, scores: Dict[str, Any]) -> None:
     """渲染 AI 反馈"""
     st.subheader("3. AI 辅助评价 (System Feedback)")
 

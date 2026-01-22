@@ -238,57 +238,132 @@ def _render_ai_input_mode(config, data_mgr) -> None:
 
 
 def _render_json_editor_mode(config, data_mgr) -> None:
-    """渲染 JSON 编辑器模式（保持原有功能）"""
+    """渲染 JSON 编辑器模式"""
 
-    # 三栏布局
-    col_config, col_editor, col_preview = st.columns([1, 2, 2])
+    st.subheader("📝 JSON 编辑器")
 
-    with col_config:
-        st.subheader("🎨 风格配置")
-        _render_style_config(config)
+    # 第一行：三个按钮（与 AI 模式一致）
+    col1, col2, col3 = st.columns(3)
 
-        st.markdown("---")
+    with col1:
+        style_btn = st.button("🎨 风格配置", use_container_width=True, key="json_style_btn")
 
-        # 加载示例数据
-        with st.expander("📂 加载示例数据"):
+    with col2:
+        load_btn = st.button("📂 加载示例", use_container_width=True, key="json_load_btn")
+
+    with col3:
+        save_btn = st.button("💾 保存存档", use_container_width=True, key="json_save_btn")
+
+    # 面板状态
+    if "json_panel" not in st.session_state:
+        st.session_state.json_panel = None
+
+    if style_btn:
+        st.session_state.json_panel = "style" if st.session_state.json_panel != "style" else None
+    if load_btn:
+        st.session_state.json_panel = "load" if st.session_state.json_panel != "load" else None
+    if save_btn:
+        st.session_state.json_panel = "save" if st.session_state.json_panel != "save" else None
+
+    # 显示面板
+    if st.session_state.json_panel == "style":
+        with st.container():
+            st.markdown("##### 🎨 简历风格配置")
+            _render_style_config(config)
+            st.markdown("---")
+
+    elif st.session_state.json_panel == "load":
+        with st.container():
+            st.markdown("##### 📂 加载示例数据")
             demo_configs = data_mgr.get_available_cv_configs()
-            demo_choice = st.selectbox(
-                "选择示例",
-                ["当前数据"] + list(demo_configs.keys()),
-                key="res_demo"
-            )
+            col_select, col_btn = st.columns([3, 1])
 
-            if st.button("加载数据", key="res_load_btn"):
-                if demo_choice in demo_configs:
+            with col_select:
+                demo_choice = st.selectbox(
+                    "选择示例",
+                    list(demo_configs.keys()),
+                    key="res_demo",
+                    label_visibility="collapsed"
+                )
+
+            with col_btn:
+                if st.button("加载", type="primary", key="res_load_btn", use_container_width=True):
                     config_name = demo_configs[demo_choice]
                     loaded_data = data_mgr.load_cv_config(config_name)
                     if loaded_data:
                         st.session_state.cv_data = loaded_data
+                        st.success(f"已加载: {demo_choice}")
                         st.rerun()
+            st.markdown("---")
 
-        st.markdown("---")
-
-        with st.expander("💾 保存版本存档"):
+    elif st.session_state.json_panel == "save":
+        with st.container():
+            st.markdown("##### 💾 保存版本存档")
             _render_save_section(data_mgr)
+            st.markdown("---")
+
+    # JSON 编辑器（左）和 预览（右）
+    col_editor, col_preview = st.columns([1, 1])
 
     with col_editor:
-        st.subheader("✏️ 数据编辑")
+        st.markdown("**数据编辑**")
+        st.caption("直接编辑 JSON 数据，修改后自动同步到预览")
 
         edited_data_str = st.text_area(
-            "JSON 编辑器",
-            value=json.dumps(st.session_state.cv_data, indent=4, ensure_ascii=False),
-            height=600,
-            key="res_json_editor"
+            "JSON",
+            value=json.dumps(st.session_state.cv_data, indent=2, ensure_ascii=False),
+            height=500,
+            key="res_json_editor",
+            label_visibility="collapsed"
         )
 
+        # 验证并更新
         try:
             current_data = json.loads(edited_data_str)
             st.session_state.cv_data = current_data
-        except json.JSONDecodeError:
-            st.error("JSON 格式错误，请检查语法")
+            st.success("✓ JSON 格式正确", icon="✅")
+        except json.JSONDecodeError as e:
+            st.error(f"JSON 格式错误: {str(e)}")
+
+        # 格式化按钮
+        if st.button("🔧 格式化 JSON", use_container_width=True):
+            try:
+                formatted = json.dumps(json.loads(edited_data_str), indent=2, ensure_ascii=False)
+                st.session_state.cv_data = json.loads(formatted)
+                st.rerun()
+            except json.JSONDecodeError:
+                st.error("无法格式化：JSON 格式错误")
 
     with col_preview:
-        _render_preview_section(config, data_mgr)
+        st.markdown("**实时预览**")
+
+        # 获取样式配置
+        style = st.session_state.get('cv_style', {
+            'layout': 'classic',
+            'theme_color': '#2563eb',
+            'font_family': 'sans'
+        })
+
+        current_data = st.session_state.cv_data
+        current_data['meta'] = style
+
+        # 加载并渲染模板
+        template_content = data_mgr.load_template(style['layout'])
+        template = Template(template_content)
+        html_output = template.render(**current_data)
+
+        # 下载按钮
+        st.download_button(
+            "📥 下载简历 (HTML)",
+            html_output,
+            file_name="resume.html",
+            mime="text/html",
+            type="primary",
+            use_container_width=True
+        )
+
+        # 预览
+        st.components.v1.html(html_output, height=500, scrolling=True)
 
 
 def _render_style_config(config) -> None:
